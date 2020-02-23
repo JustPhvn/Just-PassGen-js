@@ -51,7 +51,6 @@ function genPassword(
     let password = "";
     for (let i = 0; i < passLength; i++) {
       let charType = parseInt(Math.random() * 4);
-      console.log(charType);
       if (charType === 0 && lowerLetters == true) {
         password += String.fromCharCode(97 + Math.floor(Math.random() * 26));
       } else if (charType === 0 && lowerLetters == false) {
@@ -91,37 +90,30 @@ function genPassword(
 
 //Length of password prompt - Min 8 char | Max 128 char, checks if length is between 8 & 128
 function passwordLength() {
-  let pLength;
-  pLength = parseInt(
-    prompt(
-      "How many charcters would you like your password to be (8 - 128 char): "
-    )
-  );
+  let pLength = document.querySelector("#passLength").value;
+  pLength = parseInt(pLength);
   console.log("Password Length: " + pLength);
   if (typeof pLength === "number" && pLength >= 8 && pLength <= 128) {
     return pLength;
-    console.log(passLength);
   } else {
     alert(pLength + " is not a value between 8 & 128.");
-    passwordLength();
+    pLength.reset();
   }
 }
 //lowercase prompt
 function lowercaseLetters() {
-  let lLetters = false;
-  lLetters = confirm("Would you like lowercase letters in your password?");
-  if (lLetters === true) {
+  let lowLetters = document.querySelector("#lowercase").checked;
+  if (lowLetters === true) {
     console.log("Lowercase: True");
-    return lLetters;
+    return lowLetters;
   } else {
     console.log("Lowercase: False");
-    return lLetters;
+    return lowLetters;
   }
 }
 //uppercase prompt
 function uppercaseLetters() {
-  let uLetters = false;
-  uLetters = confirm("Would you like uppercase letters in your password?");
+  let uLetters = document.querySelector("#uppercase").checked;
   if (uLetters === true) {
     console.log("Uppercase: True");
     return uLetters;
@@ -132,8 +124,7 @@ function uppercaseLetters() {
 }
 //number prompt
 function wantNumbers() {
-  let needNumbers = false;
-  needNumbers = confirm("Would you like numbers in your password?");
+  let needNumbers = document.querySelector("#numbers").checked;
   if (needNumbers === true) {
     console.log("Numbers: True");
     return needNumbers;
@@ -144,8 +135,7 @@ function wantNumbers() {
 }
 //special character prompt
 function specialCharacters() {
-  let sChars = false;
-  sChars = confirm("Would you like special characters in your password?");
+  let sChars = document.querySelector("#specialChar").checked;
   if (sChars === true) {
     console.log("Special Characters: True");
     return sChars;
